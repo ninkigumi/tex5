@@ -69,32 +69,5 @@ RUN set -x && \
     rm -rf /var/cache/apk && \
     mkdir /var/cache/apk
 
-RUN mkdir -p /System/Library/Fonts \
- && touch '/System/Library/Fonts/ヒラギノ明朝 ProN.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W0.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W1.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W2.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W7.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W8.ttc' \
- && touch '/System/Library/Fonts/ヒラギノ角ゴシック W9.ttc'
-
-RUN curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
-RUN tlmgr repository add http://contrib.texlive.info/current tlcontrib
-RUN tlmgr pinning add tlcontrib '*'
-RUN tlmgr repository status
-RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-macos cjk-gs-integrate-macos
-RUN cjk-gs-integrate --link-texmf --cleanup
-RUN cjk-gs-integrate-macos --link-texmf
-RUN kanji-config-updmap-sys status
-
-RUN rm -f /System/Library/Fonts/*.ttc \
- && apk del .build-deps && \
-    rm -fr /tmp/install-tl-unx
-
 WORKDIR /app
 CMD ["sh"]
