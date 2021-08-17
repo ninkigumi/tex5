@@ -1,32 +1,19 @@
-# Copyright (c) 2016 Kaito Udagawa
-# Copyright (c) 2016-2020 3846masa
-# Released under the MIT license
-# https://opensource.org/licenses/MIT
+FROM alpine:3.13.5
 
-FROM frolvlad/alpine-glibc:latest
+RUN apk update
+RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community add texlive-full=20210325-r2
+RUN apk --no-cache add python3 make ghostscript git biber
 
-ENV PATH /usr/local/texlive/2020/bin/x86_64-linuxmusl:$PATH
+#### TEST TEXLIVE INSTALLATION ####
+RUN mkdir /tmp/texlive-test
+WORKDIR /tmp/texlive-test
+COPY latex-test .
+RUN pdflatex test.tex
 
-RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
-    apk add --no-cache --virtual .fetch-deps xz tar wget && \
-    mkdir /tmp/install-tl-unx && \
-    curl -L ftp://tug.org/historic/systems/texlive/2020/install-tl-unx.tar.gz | \
-      tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
-    printf "%s\n" \
-      "selected_scheme scheme-basic" \
-      "tlpdbopt_install_docfiles 0" \
-      "tlpdbopt_install_srcfiles 0" \
-      > /tmp/install-tl-unx/texlive.profile && \
-    /tmp/install-tl-unx/install-tl \
-      --profile=/tmp/install-tl-unx/texlive.profile && \
-    tlmgr install \
-      collection-latexextra \
-      collection-fontsrecommended \
-      collection-langjapanese \
-      latexmk && \
-    rm -fr /tmp/install-tl-unx && \
-    apk del .fetch-deps
+#### CLEAN UP ####
+WORKDIR /
+RUN rm -rf /tmp/*
 
-WORKDIR /workdir
+WORKDIR /data
 
 
