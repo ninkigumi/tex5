@@ -3,7 +3,8 @@ FROM alpine:3.13.5
 RUN apk update
 RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community add texlive-full=20210325-r4
 
-RUN ls -al /usr/local/
+RUN ls -al /usr/local/bin
+RUN apk info -a texlive-full
 
 RUN apk --no-cache add python3 make ghostscript git biber
 
