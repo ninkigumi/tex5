@@ -46,8 +46,9 @@ RUN set -x && \
     rm -rf /usr/glibc-compat/bin && \
     rm -rf /usr/glibc-compat/sbin && \
     mkdir /tmp/install-tl-unx && \
-    curl -L ftp://tug.org/historic/systems/texlive/${TEXLIVE_VER}/install-tl-unx.tar.gz | \
-      tar zx -C /tmp/install-tl-unx --strip-components=1 && \
+    #curl -L ftp://tug.org/historic/systems/texlive/${TEXLIVE_VER}/install-tl-unx.tar.gz | \
+    curl -L https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
+    tar zx -C /tmp/install-tl-unx --strip-components=1 && \
     { \
       echo "selected_scheme scheme-basic"; \
       echo "tlpdbopt_install_docfiles 0"; \
@@ -62,7 +63,9 @@ RUN set -x && \
       collection-fontsrecommended \
       collection-langjapanese \
       epstopdf \
-      latexmk && \
+      lualatex-math \
+      xetex xecjk ctex \
+      latexmk light-latex-make && \
     apk del --purge .fetch-deps && \
     apk del --purge .glibc-bin-deps && \
     rm -rf /tmp/files && \
