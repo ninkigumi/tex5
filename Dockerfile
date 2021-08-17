@@ -28,7 +28,11 @@ RUN set -ex \
  && touch '/System/Library/Fonts/ヒラギノ明朝 ProN.ttc' \
  && touch '/System/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc' \
  && touch '/System/Library/Fonts/ヒラギノ角ゴシック W0.ttc' \
-	@@ -36,9 +81,20 @@ RUN set -ex \
+ && touch '/System/Library/Fonts/ヒラギノ角ゴシック W1.ttc' \
+ && touch '/System/Library/Fonts/ヒラギノ角ゴシック W2.ttc' \
+ && touch '/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc' \
+ && touch '/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc' \
+ && touch '/System/Library/Fonts/ヒラギノ角ゴシック W5.ttc' \
  && touch '/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc' \
  && touch '/System/Library/Fonts/ヒラギノ角ゴシック W7.ttc' \
  && touch '/System/Library/Fonts/ヒラギノ角ゴシック W8.ttc' \
