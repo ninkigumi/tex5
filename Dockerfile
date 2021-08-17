@@ -12,7 +12,7 @@ RUN set -x && \
     apk update && \
     apk add --no-cache --virtual .fetch-deps curl xz && \
     apk add --no-cache --virtual .glibc-bin-deps libgcc && \
-    apk add --no-cache perl fontconfig-dev freetype-dev ghostscript && \
+    apk add --no-cache gnupg perl fontconfig-dev freetype-dev ghostscript && \
     curl -L ${GLIBC_URL_BASE}/${GLIBC_VER}/glibc-bin-${GLIBC_VER}-$(arch).tar.gz | \
       tar zx -C / && \
     mkdir -p /lib64 /usr/glibc-compat/lib/locale /usr/glibc-compat/lib64 && \
@@ -64,7 +64,7 @@ RUN set -x && \
       collection-langjapanese \
       epstopdf \
       lualatex-math \
-      xetex xecjk ctex \
+      #xetex xecjk ctex \
       latexmk light-latex-make && \
     apk del --purge .fetch-deps && \
     apk del --purge .glibc-bin-deps && \
