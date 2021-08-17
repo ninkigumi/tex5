@@ -6,7 +6,7 @@ RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/commun
 RUN ls -al /usr/local/bin
 RUN apk info -a texlive-full
 
-RUN apk --no-cache add python3 make ghostscript git biber
+RUN apk --no-cache add curl python3 make ghostscript git biber
 
 #### TEST TEXLIVE INSTALLATION ####
 #RUN mkdir /tmp/texlive-test
