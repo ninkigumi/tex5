@@ -123,9 +123,9 @@ RUN tlmgr repository add http://contrib.texlive.info/current tlcontrib
 RUN tlmgr pinning add tlcontrib '*'
 RUN tlmgr repository status
 RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-macos cjk-gs-integrate-macos
-RUN cjk-gs-integrate --link-texmf --cleanup
-RUN cjk-gs-integrate-macos --link-texmf
-RUN kanji-config-updmap-sys status
+#RUN cjk-gs-integrate --link-texmf --cleanup
+#RUN cjk-gs-integrate-macos --link-texmf
+#RUN kanji-config-updmap-sys status
 
 
 #RUN cjk-gs-integrate --link-texmf --fontdef-add cjkgs-macos-highsierra.dat \
