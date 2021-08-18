@@ -124,6 +124,7 @@ RUN tlmgr pinning add tlcontrib '*'
 RUN tlmgr repository status
 RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-macos
 RUN tlmgr install cjk-gs-integrate-macos
+RUN chmod +x /usr/local/texlive/${TEXLIVE_VER}/texmf-dist/scripts/cjk-gs-integrate-macos
 RUN ls -al 
 RUN cjk-gs-integrate --link-texmf --cleanup
 RUN cjk-gs-integrate-macos --link-texmf
