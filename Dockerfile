@@ -5,7 +5,7 @@ ARG TEXLIVE_VER=2021
 
 ENV LANG=C.UTF-8
 ENV GLIBC_URL_BASE=https://github.com/pman0214/docker-glibc-builder/releases/download
-ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/${TEXLIVE_VER}/bin/aarch64-linux:$PATH
+ENV PATH=/usr/local/texlive/${TEXLIVE_VER}/texmf-dist/scripts:/usr/local/texlive/${TEXLIVE_VER}/bin/x86_64-linux:/usr/local/texlive/${TEXLIVE_VER}/bin/aarch64-linux:$PATH
 
 RUN set -x && \
     cd / && \
@@ -124,8 +124,9 @@ RUN tlmgr pinning add tlcontrib '*'
 RUN tlmgr repository status
 RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-macos
 RUN tlmgr install cjk-gs-integrate-macos
+RUN ls -al 
 RUN cjk-gs-integrate --link-texmf --cleanup
-#RUN cjk-gs-integrate-macos --link-texmf
+RUN cjk-gs-integrate-macos --link-texmf
 RUN kanji-config-updmap-sys status
 
 #RUN cjk-gs-integrate --link-texmf --fontdef-add cjkgs-macos-highsierra.dat \
