@@ -133,9 +133,9 @@ RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-
 # && kanji-config-updmap-sys --jis2004 hiragino-highsierra-pron \
 # && mktexlsr \
 
-RUN rm -f /System/Library/Fonts/*.ttc \
- && apk del .build-deps && \
-    rm -fr /tmp/install-tl-unx
+#RUN rm -f /System/Library/Fonts/*.ttc \
+# && apk del .build-deps && \
+#    rm -fr /tmp/install-tl-unx
 
 
 WORKDIR /app
