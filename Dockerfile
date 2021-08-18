@@ -12,7 +12,7 @@ RUN set -x && \
     apk update && \
     apk add --no-cache --virtual .fetch-deps curl xz && \
     apk add --no-cache --virtual .glibc-bin-deps libgcc && \
-    apk add --no-cache curl gnupg perl fontconfig-dev freetype-dev ghostscript && \
+    apk add --no-cache xz curl gnupg perl fontconfig-dev freetype-dev ghostscript && \
     curl -L ${GLIBC_URL_BASE}/${GLIBC_VER}/glibc-bin-${GLIBC_VER}-$(arch).tar.gz | \
       tar zx -C / && \
     mkdir -p /lib64 /usr/glibc-compat/lib/locale /usr/glibc-compat/lib64 && \
@@ -123,9 +123,9 @@ RUN tlmgr repository add http://contrib.texlive.info/current tlcontrib
 RUN tlmgr pinning add tlcontrib '*'
 RUN tlmgr repository status
 RUN tlmgr install japanese-otf-nonfree japanese-otf-uptex-nonfree ptex-fontmaps-macos cjk-gs-integrate-macos
-#RUN cjk-gs-integrate --link-texmf --cleanup
-#RUN cjk-gs-integrate-macos --link-texmf
-#RUN kanji-config-updmap-sys status
+RUN cjk-gs-integrate --link-texmf --cleanup
+RUN cjk-gs-integrate-macos --link-texmf
+RUN kanji-config-updmap-sys status
 
 
 #RUN cjk-gs-integrate --link-texmf --fontdef-add cjkgs-macos-highsierra.dat \
