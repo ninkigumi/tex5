@@ -131,7 +131,7 @@ RUN cjk-gs-integrate --link-texmf
 #RUN cjk-gs-integrate --link-texmf --cleanup
 #RUN cjk-gs-integrate-macos --link-texmf
 RUN kanji-config-updmap-sys status
-#RUN kanji-config-updmap-sys --jis2004 hiragino-highsierra-pron
+RUN kanji-config-updmap-sys --jis2004 hiragino-highsierra-pron
 #RUN kanji-config-updmap-sys status
 
 #RUN cjk-gs-integrate --link-texmf --fontdef-add cjkgs-macos-highsierra.dat \
